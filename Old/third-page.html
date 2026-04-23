@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CRIMINAL LOGIN</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- General Resets & Typography --- */
+        * {
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif; /* Using a more common and modern font */
+        }
+
+        body {
+            background-image: url('https://img.freepik.com/free-vector/blood-text-effect-editable-metallic-red-text-style_314614-1363.jpg?w=2000');
+            background-size: cover; /* Cover the entire background */
+            background-position: center center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent repetition */
+            background-attachment: fixed; /* Keep background fixed during scroll */
+            display: flex; /* Use flexbox to center content */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            overflow-x: hidden; /* Prevent horizontal scrollbar due to animation */
+            animation: backgroundChange 8s linear infinite; /* Rename animation for clarity */
+        }
+
+        @keyframes backgroundChange { /* Renamed 'yash' to 'backgroundChange' */
+            40% {
+                background-image: url(https://media.istockphoto.com/id/492905865/photo/bloody-wall-scene.jpg?s=612x612&w=0&k=20&c=jTpV8n2rnssTCb9EfBxeGX5HTxrcDjG0cn3yM-zdWng=);
+                background-size: cover; /* Ensure new background also covers */
+                background-position: center center;
+            }
+        }
+
+        /* --- Form Container (replacing table for better flexibility) --- */
+        .login-container {
+            background-color: rgba(176, 219, 219, 0.9); /* Semi-transparent background for readability */
+            border: 10px dashed rgba(240, 15, 15, 0.763); /* Maintain original border style */
+            border-radius: 50px; /* Maintain original border radius */
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+            width: 90%; /* Start with a larger width for smaller screens */
+            max-width: 450px; /* Max width for larger screens */
+            text-align: center; /* Center content inside the container */
+            transition: background-color 0.3s ease, border-radius 0.3s ease; /* Smooth hover effect */
+        }
+
+        .login-container:hover {
+            background-color: rgb(115, 179, 179);
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Space between form fields */
+            display: flex; /* Use flexbox for label and input alignment */
+            flex-direction: column; /* Stack label and input on top of each other by default */
+            align-items: flex-start; /* Align text to the left within the group */
+        }
+
+        .form-group label {
+            font-family: Verdana, Geneva, Tahoma, sans-serif; /* Maintain original font */
+            color: rgba(231, 32, 161, 0.97);
+            font-weight: bold;
+            margin-bottom: 8px; /* Space between label and input */
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"] {
+            width: 100%; /* Make inputs take full width of their container */
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent input background */
+            color: #333;
+        }
+
+        .form-group input::placeholder {
+            color: #777;
+        }
+
+        .submit-btn { /* Renamed 'hi' to 'submit-btn' for clarity */
+            background-color: rgb(235, 215, 179);
+            text-decoration: none; /* Text decoration should be on the <a> tag inside */
+            border-color: rgb(52, 222, 37);
+            border-style: groove;
+            border-width: 10px;
+            border-radius: 10px;
+            padding: 15px 30px; /* Adjust padding for better button size */
+            font-size: 1.1em;
+            cursor: pointer;
+            display: inline-block; /* Allow padding and margin to work correctly */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adjusted box-shadow */
+            transition: background-color 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
+            width: auto; /* Allow button to size based on content */
+            margin-top: 20px; /* Space above the button */
+        }
+
+        .submit-btn a {
+            color: inherit; /* Inherit color from button */
+            text-decoration: none; /* Remove underline from link */
+            display: block; /* Make the link fill the button area */
+        }
+
+        .submit-btn:hover {
+            background-color: rgb(200, 179, 179);
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (min-width: 600px) {
+            /* For larger screens, align label and input side-by-side */
+            .form-group {
+                flex-direction: row;
+                align-items: center; /* Align items centrally in the row */
+                justify-content: space-between; /* Space out label and input */
+            }
+
+            .form-group label {
+                margin-right: 20px; /* Space between label and input */
+                margin-bottom: 0; /* Remove bottom margin for labels in row layout */
+                flex-shrink: 0; /* Prevent label from shrinking */
+            }
+
+            .form-group input {
+                flex-grow: 1; /* Allow input to take up remaining space */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <form>
+            <div class="form-group">
+                <label for="criminal_id">CRIMINAL ID:</label>
+                <input type="text" id="criminal_id" name="criminal_id" placeholder="ENTER CRIMINAL ID">
+            </div>
+            <div class="form-group">
+                <label for="dob">DATE OF BIRTH:</label>
+                <input type="date" id="dob" name="dob">
+            </div>
+            <button class="submit-btn" type="button">
+                <a href="update page.html">SUBMIT</a>
+            </button>
+        </form>
+    </div>
+</body>
+</html>

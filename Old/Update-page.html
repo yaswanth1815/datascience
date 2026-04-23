@@ -1,0 +1,177 @@
+<?php
+session_start();
+if (isset($_SESSION['SESSION_USERNAME'])) {
+    header("Location: /project-first-page.php");
+    die();
+}
+
+$server_name="localhost";
+$username="u212846999_Moksha";
+$password1="Moksha@10171";
+$database_name="u212846999_Moksha";
+
+$conn=mysqli_connect($server_name,$username,$password1,$database_name);
+
+if(!$conn)
+{
+	die("Connection Failed:" . mysqli_connect_error());
+
+}
+$msg = "USER LOGIN";
+
+if (isset($_POST['submit'])) {
+    $case_id = mysqli_real_escape_string($conn, $_POST['case_id']);
+    $leaving_date = mysqli_real_escape_string($conn, $_POST['leaving_date']);
+    $punishment_type = mysqli_real_escape_string($conn, $_POST['punishment_type']);
+    $punishment_name = mysqli_real_escape_string($conn, $_POST['punishment_name']);
+    $station_incharge = mysqli_real_escape_string($conn, $_POST['station_incharge']);
+    $court_type = mysqli_real_escape_string($conn, $_POST['court_type']);
+    $court_no = mysqli_real_escape_string($conn, $_POST['court_no']);
+    $prision_name = mysqli_real_escape_string($conn, $_POST['prision_name']);
+    $prision_no = mysqli_real_escape_string($conn, $_POST['prision_no']);
+    
+    $sql = "UPDATE case_details (Case_id, leaving_date, punishment_type, punishment_name,  station_incharge, court_type, court_no, prision_name, prision_no) VALUES 
+    ('{$case_id}', '{$leaving_date}', '{$punishment_type}', '{$punishment_name}', '{$station_incharge}', '{$court_type}', '{$court_no}', '{$prision_name}', '{$prision_no}')";
+       $result = mysqli_query($conn, $sql);
+
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+            header("Location: /third-page.php?update_is_true");
+    } else {
+        header("Location: /third-page.php?update_is_false");
+    }
+}
+?>
+   <html>
+       <head><title>Criminal Records page</title>
+        <style>
+            button{
+                background-color: rgb(235, 215, 179);
+            }
+            .hi{
+                text-decoration: double;
+                border-color: rgb(222, 37, 37);
+                border-style: outset   ;
+                border-width: 10px;
+                border-radius: 10px;
+                box-shadow: 20px;
+                margin-left:60%;
+
+            }
+            body{
+                background-image: url('https://media.istockphoto.com/id/916023720/vector/fingerprint2.jpg?s=612x612&w=0&k=20&c=ERn7Jfz9K2SFUdjRrEOyw9XzaU3z812qwFiWPDtCpGo=');
+            background-position: center;
+            background-repeat:repeat;
+            box-sizing: content-box;
+            background-size: 50%;
+            }
+            h1{
+                background-color: rgb(241, 155, 26);
+            margin:40px 450px 40px 450px ;
+           
+            }
+            h1.hello
+            {
+            }
+            h2{
+                margin:40px 450px 40px 450px ;
+                background-color: rgb(54, 231, 136);
+                padding:8px;
+                font-size:25px;
+            }
+            table
+    {
+        align:center;
+        background-color: rgb(121, 123, 118);
+border:8px inset rgba(197, 210, 20, 0.763);
+border-width: 25px;
+border-style: groove;
+border-radius: 30px;
+animation: yash 2s linear infinite;
+
+
+    }
+    @keyframes yash
+    {
+        10%{
+            border-radius: 40px;
+            border-color: rgb(65, 185, 232);
+            border-style: dashed;
+
+        }
+        30%{
+            border-style: dotted;
+            border-color: rgb(145, 210, 54);
+        }
+        50%{
+            border-style: dashed;
+            border-color: rgb(205, 177, 74);
+}
+70%{
+    border-style: dotted;
+    border-color: darkgreen;
+}
+90%{
+    border-style: dashed;
+    border-color: rgb(209, 43, 106);
+}
+}
+        
+    
+    td
+    {
+padding:14px;
+align:center;
+
+            
+    }
+    table:hover{
+        background-color: rgb(45, 56, 52);
+    }
+</style> 
+    </head>
+       <body><div>
+       <h1 class="hello" align=CENTER><b>UPDATION</b></h1>
+           
+           <h2 align="Center">CASE DETAILS:</h2>
+       <form action="" method="post">
+        <table align="center">
+            <tr>
+                <td>
+                    <LABEL style="color:rgb(167, 245, 41)" for="Case id"><b>CASE ID: </b></LABEL>
+                    <input  type="number" placeholder="Enter Case ID" name="case_id">
+                </td>
+            </tr>
+            <tr><td><LABEL style="color:rgb(167, 245, 41)" for="Leave"><b>LEAVING DATE: </b></LABEL>
+                <input type="date" name="leaving_date"></td></tr>
+            <tr><td><label style="color:rgb(167, 245, 41)"><b>PUNISHMENT TYPE:</b></label>
+                <input type="text" name="punishment_type" placeholder="Type of punishment">
+                </td></tr>
+            <tr><td><label style="color:rgb(167, 245, 41)"><b>PUNISHMENT NAME:</b> </label>
+                <input type="text" name="punishment_name" placeholder="Name of punishment"></td></tr>
+            <tr><td><label style="color:rgb(167, 245, 41)"><b>STATION INCHARGE:</b></label>
+                <input type="text" name="station_incharge" placeholder="Name of the Station Incharge">
+         </td></tr>
+            <tr><td><label style="color:rgb(167, 245, 41)"><b>COURT TYPE:</b> </label>
+                <select name="court_type">
+                    <option value="Select">Select</option>
+                    <option value="Supreme Court">Supreme Court</option>
+                    <option value="High Court">High Court</option>
+                    <option value="District Court">District Court</option>
+                    <option value="Zonal Court">Zonal Court</option>
+                    <option value="Lok Adalat">Loc Adalath</option>
+                </select></td></tr>
+            <tr><td><label style="color:rgb(167, 245, 41)"><b>COURT NO:</b> </label>
+                <input type="text" name="court_no" placeholder="Enter the court id"></td></tr>
+            <tr><td><label  style="color:rgb(167, 245, 41)"><b>PRISON NAME</b> </label>
+                <input type="text" name="prision_name" placeholder="Enter the Prison name"></td></tr>
+            <tr><td><label style="color:rgb(167, 245, 41)"><b>PRISON NO</b>  </label>
+                <input type="number" name="prision_no" placeholder="Enter the Prison ID"></td></tr>
+            
+        </table><br><br>
+</form>
+            <button class="hi" name="button" type="button">SUBMIT</button> 
+            
+            
+   </body>
+    </html>

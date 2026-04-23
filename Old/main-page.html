@@ -1,0 +1,101 @@
+<?php
+session_start();
+if (isset($_SESSION['SESSION_USERNAME'])) {
+    header("Location: /project-first-page.php");
+    die();
+}
+
+$server_name="localhost";
+$username="u212846999_Moksha";
+$password1="Moksha@10171";
+$database_name="u212846999_Moksha";
+
+$conn=mysqli_connect($server_name,$username,$password1,$database_name);
+
+if(!$conn)
+{
+	die("Connection Failed:" . mysqli_connect_error());
+
+}
+
+?>
+<html>
+    <title>MAIN PAGE</title>
+    <head>
+        <style>
+            body{
+                background-image: url('https://t4.ftcdn.net/jpg/04/60/71/01/360_F_460710131_YkD6NsivdyYsHupNvO3Y8MPEwxTAhORh.jpg');
+                background-repeat: repeat;
+                background-position:center ;
+                background-size: 40%;
+                
+            }
+            
+            button{
+            }
+                button.p1{
+                    margin-left:70px;
+                    margin-top:16%;
+                    border-color: rgb(35, 86, 86);
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 30%;
+                    border-width: 30px;
+                    border-style: groove;
+                    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXWNKDpiWE3IBx2kNBDudvRuN1B62-IsK1tA&usqp=CAU');
+                    background-position: center;
+                    animation: jashu 5s linear infinite;
+                }
+                @keyframes jashu{
+                10%{
+                    border-radius: 20px;
+                    border-color:rgb(239, 77, 13) ;
+                }}
+            
+button.p2{
+    margin-left:230px;
+    margin-top:16%;
+    border-color: rgb(35, 86, 86);
+    width: 200px;
+    height: 200px;
+    border-radius: 30%;
+    border-style: groove;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROMBPB0S4p7NtFOaFdUBGqSPU-LsNFpqJ6AR65-dliLQDJ1Sc0H-f9opf9v4YVT57K0S4&usqp=CAU');
+    background-position: center;
+    border-width: 30px;
+    animation:yashu 5s linear infinite;
+    
+}
+@keyframes yashu{
+                10%{
+                    border-radius: 20px;
+                    border-color:rgb(228, 234, 229) ;
+                }}
+button.p3{
+    margin-left:250px;
+    margin-top:16%;
+    border-color: rgb(35, 86, 86);
+    width: 200px;
+    border-style: groove;
+    height: 200px;
+    border-radius: 30%;
+    border-width: 30px;
+    background-position: center;
+    animation: door 5s linear infinite;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl1VVzt_K-CPehwArFZFpKTPnqXvN7o_iKB5hKX-sDrRi2xZCm7UdGD2WigQyLE642-DA&usqp=CAU');
+}
+@keyframes door{
+                10%{
+                    border-radius: 20px;
+                    border-color:rgb(6, 230, 44) ;
+                }}
+
+        </style>
+    </head>
+    <body>
+        <button style="font-size: 30px; color:rgb(240, 33, 122) ;" class="p1" id="btn"><b><a href="/Add-details-page.php">ADD DETAILS</b></a></button>
+        <button style="font-size: 30px;color: chartreuse;" class="p2" id="btn"><b><a href="/third-page.php">EDIT DETAILS</a></b></button>
+        <button style="font-size: 30px;color: rgb(27, 12, 236);" class="p3" id="btn"><b>SHOW ALL</b></button>
+    </body>
+</html>
+

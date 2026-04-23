@@ -1,0 +1,271 @@
+<?php
+session_start();
+if (isset($_SESSION['SESSION_USERNAME'])) {
+    header("Location: /project-first-page.php");
+    die();
+}
+
+$server_name="localhost";
+$username="u212846999_Moksha";
+$password1="Moksha@10171";
+$database_name="u212846999_Moksha";
+
+$conn=mysqli_connect($server_name,$username,$password1,$database_name);
+
+if(!$conn)
+{
+	die("Connection Failed:" . mysqli_connect_error());
+
+}
+
+
+if (isset($_POST['submit'])) {
+    $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+    $dob = mysqli_real_escape_string($conn, $_POST['dob']);
+    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+    $Nationality = mysqli_real_escape_string($conn, $_POST['Nationality']);
+    $State = mysqli_real_escape_string($conn, $_POST['State']);
+    $Country_Code = mysqli_real_escape_string($conn, $_POST['Country_Code']);
+    $ssn_id = mysqli_real_escape_string($conn, $_POST['ssn_id']);
+    $city = mysqli_real_escape_string($conn, $_POST['city']);
+    $land_mark = mysqli_real_escape_string($conn, $_POST['land_mark']);
+    $street = mysqli_real_escape_string($conn, $_POST['street']);
+    $pincode = mysqli_real_escape_string($conn, $_POST['pincode']);
+
+    $case_id = mysqli_real_escape_string($conn, $_POST['case_id']);
+    $entry_date = mysqli_real_escape_string($conn, $_POST['entry_date']);
+    $leaving_date = mysqli_real_escape_string($conn, $_POST['leaving_date']);
+    $punishment_type = mysqli_real_escape_string($conn, $_POST['punishment_type']);
+    $punishment_name = mysqli_real_escape_string($conn, $_POST['punishment_name']);
+    $station_name = mysqli_real_escape_string($conn, $_POST['station_name']);
+    $station_id = mysqli_real_escape_string($conn, $_POST['station_id']);
+    $station_location = mysqli_real_escape_string($conn, $_POST['station_location']);
+    $station_incharge = mysqli_real_escape_string($conn, $_POST['station_incharge']);
+    $court_type = mysqli_real_escape_string($conn, $_POST['court_type']);
+    $court_no = mysqli_real_escape_string($conn, $_POST['court_no']);
+    $prision_name = mysqli_real_escape_string($conn, $_POST['prision_name']);
+    $prision_no = mysqli_real_escape_string($conn, $_POST['prision_no']);
+    
+
+ $sql = "INSERT INTO case_details (Case_id, entry_date, leaving_date, punishment_type,  punishment_name, station_name, station_id, station_location, station_location, station_incharge, court_type, court_no,  prision_name, prision_no) VALUES 
+ ('{$case_id}', '{$entry_date}', '{$leaving_date}', '{$punishment_type}', '{$punishment_name}', '{$station_name}', '{$station_id}', '{$station_location}', '{$station_incharge}', "{$court_type}", "{$court_no}", "{$prision_name}", "{$prision_no}")";
+    $result = mysqli_query($conn, $sql);
+
+    $sql1 = "INSERT INTO criminal_address (fname, lname, dob, gender,  Nationality, State, Country_Code, ssn_id, city, land_mark, street, pincode) VALUES 
+ ('{$fname}', '{$lname}', '{$dob}', '{$gender}', '{$Nationality}', '{$State}', '{$Country_Code}', '{$ssn_id}', '{$city}', '{$land_mark}', '{$street}', '{$pincode}')";
+    $result1 = mysqli_query($conn, $sql1);
+
+    
+    if ($result) {
+        $msg = "<a style='background-color:green;color:white;' >Criminal Details Inserted Successfuly</a>";
+    } else {
+        $msg = "<a style='background-color:red;color:white;' > Crimminal Details Not Inserted Successfuly</a>";
+    }
+}
+
+?>
+<html>
+    <head><title>Criminal Records page</title>
+        <style>
+            button{
+                background-color: aqua;
+            }
+            button.hi{
+                text-decoration: double;
+                border-color: rgb(223, 25, 219);
+                border-style: ridge;
+                border-width: 20px;
+                border-radius: 10px 10px 10px 10px;
+                box-shadow: 20px;
+                margin-left:700px;
+
+            }
+            
+            
+            table{  background-color: darkgrey;
+ 
+}  
+p
+{
+background-color: rgb(71, 165, 42);
+}
+p.man
+{
+    margin:40px 410px 40px 400px;
+    border-style: groove;
+    border-width: 10px;
+    border-color: aqua;
+    
+    
+}
+
+    
+.ex 
+{  
+    margin: 30px 410px 30px 400px;  
+    border-style:ridge;
+    border-width:30px;
+    border-color:rgb(247, 170, 69);
+    animation: jashu 10s linear infinite;
+    }
+@keyframes jashu{
+    
+
+    10%{
+        border-color: rgb(73, 73, 88);
+        background-color: beige;
+    }
+    40%{
+    border-color: rgb(91, 69, 69);
+    background-color:orchid;
+    }
+    50%{
+    border-color: rgb(110, 114, 106);
+    background-color:rgb(224, 236, 206);
+    }
+    70%{
+    border-color: rgb(167, 137, 100);
+    background-color:rgb(217, 217, 70);
+    }
+    90%{
+    border-color: rgb(114, 82, 102);
+    background-color:rgb(230, 206, 206);
+    }
+}
+
+td
+{
+
+}
+
+            body{
+                background-image: url('https://img.freepik.com/free-photo/background-dark-prison-cell_1194-7364.jpg?w=2000');
+                background-attachment:fixed;
+                background-position: center;
+                background-size: 85%;
+                
+            
+            }
+
+            table
+    {
+        align:center;
+border:10px inset rgba(26, 39, 43, 0.763);
+border-width: 60px;
+border-radius: 50px 50px;
+}
+    td
+    {
+padding:8px;
+align:center;
+    }
+        </style>
+    </head>
+    <body>
+        <div>
+        <p class="man" style="font-size: 30px" align="center">  <b>CRIMINAL  DETAILS</b></p>
+       <p style="text-align:center;"> <?php echo $msg; ?></a>
+        <form action="" method="post">
+        <table class="ex" align="center">
+            <tr>
+                <td ><label style="color:rgb(243, 26, 26)" id><b>FIRST NAME:</b> </label>
+                    <input type="text" placeholder="Enter First name" size="25" id="Firstname" name="fname">
+                </td>
+            </tr>
+            <tr><td><label style="color:rgb(243, 26, 26)" id><b>LAST NAME:</b> </label>
+                <input type="text" placeholder="Enter last name" size="30" id="Firstname" name="lname" >
+    </td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)" for="age"><b>DOB:</b>  </label>
+                <input type="date" name="dob"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)" for="gender"><b>GENDER:</b>  </label>
+                <select name="gender" aria-placeholder="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+    </td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)" for="Country"><b>COUNTRY:</b> </label>
+                <select name="Nationality" aria-placeholder="Nationality">
+                    <option value="select">Select</option>
+                    <option value="India">India</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="Afghanistan">Afghanistan</option>
+                    <option value="China">China</option>
+                    <option value="America">America</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Brazil">Brazil</option>
+                </select></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)" for="State"><b>STATE:</b> </label>
+                <select name="State" aria-placeholder="State">
+                    <option value="select">Select</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="kerala">kerala</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Karnataka">Karnataka</option>
+                </select></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)" for="Country code"><b>COUNTRY CODE:</b> </label>
+                <select name="Country_Code" aria-placeholder="Country code">
+                    <option value="select">Select</option>
+                    <option value="9343">9343</option>
+                    <option value="4543">4543</option>
+                    <option value="3435">3435</option>
+                    <option value="4321">4321</option>
+                    <option value="7869">7869</option>
+                </select></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)" for="Adhar number"><b>SSN ID</b></label>
+                <input type="Number" name="ssn_id" placeholder="Enter SSN ID"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)" ><b>CITY/TOWN:</b></label>
+                <input type="Text" name="city"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>LAND MARK:</b></label>
+                <input type="Text" name="land_mark"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>STREET:</b></label>
+                <input type="Text" name="street"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>PINCODE:</b> </label>
+                <input type="Number" name="pincode"></td></tr>
+        </table>
+        <p class="man" style="font-size: 30px" align="Center"><b>CASE DETAILS</b></p>
+        <table class="ex" align="center">
+            <tr><td><LABEL style="color:rgb(243, 26, 26)" for="Case id"><b>CASE ID:</b> </LABEL>
+                <input type="number" name="case_id"></td></tr>
+            <tr><td><LABEL style="color:rgb(243, 26, 26)" for="Entry"><b>ENTRY DATE:</b> </LABEL>
+                <input type="date" namme="entry_date"></td></tr>
+            <tr><td><LABEL style="color:rgb(243, 26, 26)" for="Leave"><b>LEAVING DATE:</b></LABEL>
+                <input type="date" name="leaving_date"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>PUNISHMENT TYPE:</b></label>
+                <input type="text" name="punishment_type" placeholder="Type of punishment"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>PUNISHMENT NAME:</b> </label>
+                <input type="text" name="punishment_name" placeholder="Name of punishment"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>STATION NAME:</b></label>
+                <input type="text" name="station_name" placeholder="Station name"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>STATTION ID:</b></label>
+                <input type="number" name="station_id" placeholder="Station ID"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>STATION LOCATION:</b>  </label>
+                <input type="text" name="station_location"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>STATION INCHARGE:</b> </label>
+                <input type="text" name="station_incharge" placeholder="Name of the Station Incharge:">
+                 </td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>COURT TYPE:</b> </label>
+                <select name="court_type">
+                    <option value="Select">Select</option>
+                    <option value="Supreme Court">Supreme Court</option>
+                    <option value="High Court">High Court</option>
+                    <option value="District Court">District Court</option>
+                    <option value="Zonal Court">Zonal Court</option>
+                    <option value="Loc Adalath">Loc Adalath</option>
+                </select></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>COURT NO:</b>  </label>
+                <input type="text" name="court_no" placeholder="Enter the court id:">
+                </td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>PRISON NAME</b>  </label>
+                <input type="text" name="prision_name" placeholder="Enter the Prison name:"></td></tr>
+            <tr><td><label style="color:rgb(243, 26, 26)"><b>PRISON NO:</b>  </label>
+                <input type="number" name="prision_no" placeholder="Enter the Prison ID:"></td></tr>
+        </table>
+        <button class="hi" name="submit_case" type="button">SUBMIT</button> 
+    </div>
+</form>
+        </body>
+    
+</html>
